@@ -1,0 +1,289 @@
+/* ── Base ──────────────────────────────────────────────── */
+body {
+    background-color: #000;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: medium;
+    margin: 0;
+    padding: 0;
+}
+
+/* ── Bottom Nav ────────────────────────────────────────── */
+.MenuBar {
+    background-color: #000;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    border-top: 0.5px solid #1a1a1a;
+    padding: 6px 0 8px;
+}
+
+.MenuBar ul {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.MenuBar ul li a {
+    display: block;
+    color: darkgrey;
+    font-size: 22px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 4px 10px;
+    transition: color 0.2s;
+}
+
+.MenuBar ul li:nth-child(1) a:hover { color: rgb(214, 30, 60); }
+.MenuBar ul li:nth-child(2) a:hover { color: #047e12; }
+.MenuBar ul li:nth-child(3) a:hover { color: rgb(13, 67, 214); }
+.MenuBar ul li:nth-child(4) a:hover { color: rgb(236, 94, 36); }
+.MenuBar ul li:nth-child(5) a:hover { color: rgb(62, 170, 212); }
+
+/* Resume button */
+.MenuBar ul li:last-child a {
+    color: #fff;
+    border: 0.5px solid #fff;
+    margin-left: 0.5rem;
+    transition: background 0.2s, color 0.2s;
+}
+
+.MenuBar ul li:last-child a:hover {
+    background: #fff;
+    color: #000;
+}
+
+/* ── Home Hero ─────────────────────────────────────────── */
+.head {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.Name {
+    font-size: 127px;
+    font-weight: 1000;
+    color: transparent;
+    -webkit-text-stroke: 2px #fff;
+    letter-spacing: 12px;
+    margin: 0;
+    text-transform: uppercase;
+    transition: all 0.3s;
+}
+
+.Name:hover {
+    color: #ffffff;
+    -webkit-text-stroke: 0px;
+}
+
+.SubTitle {
+    font-size: 12px;
+    font-weight: 800;
+    color: #555;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-top: 12px;
+}
+
+/* ── Shared Page Layout ────────────────────────────────── */
+.page-content {
+    position: relative;
+    z-index: 1;
+    padding: 80px 60px 100px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.page-title {
+    font-size: 11px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: #555;
+    margin-bottom: 60px;
+    font-weight: 800;
+}
+
+/* ── Experience Page ───────────────────────────────────── */
+.exp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+.exp-item {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 0 40px;
+    border-top: 0.5px solid #1a1a1a;
+    padding-top: 28px;
+}
+
+.exp-meta {
+    text-align: right;
+}
+
+.exp-date {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #333;
+    text-transform: uppercase;
+    line-height: 1.6;
+}
+
+.exp-location {
+    font-size: 11px;
+    color: #2a2a2a;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 4px;
+}
+
+.exp-body {}
+
+.exp-role {
+    font-size: 13px;
+    font-weight: 800;
+    color: #047e12;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin: 0 0 2px;
+}
+
+.exp-company {
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin: 0 0 14px;
+}
+
+.exp-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.exp-bullets li {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.7;
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 6px;
+}
+
+.exp-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: #222;
+}
+
+/* ── Projects Page ─────────────────────────────────────── */
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+}
+
+.project-card {
+    border: 0.5px solid #1a1a1a;
+    padding: 32px 28px;
+    transition: border-color 0.2s;
+}
+
+.project-card:hover {
+    border-color: #333;
+}
+
+.project-tag {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.project-name {
+    font-size: 18px;
+    font-weight: 800;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin: 0 0 12px;
+    transition: color 0.2s;
+}
+
+.project-desc {
+    font-size: 12px;
+    color: #444;
+    line-height: 1.7;
+    margin: 0 0 20px;
+}
+
+.project-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.stack-tag {
+    font-size: 10px;
+    border: 0.5px solid #222;
+    color: #333;
+    padding: 3px 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.project-card:hover .project-name {
+    color: rgb(236, 94, 36);
+}
+
+/* ── Contact / LinkedIn Page ───────────────────────────── */
+.contact-block {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-top: 20px;
+}
+
+.contact-row {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    border-top: 0.5px solid #1a1a1a;
+    padding-top: 24px;
+}
+
+.contact-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #333;
+    width: 100px;
+    flex-shrink: 0;
+}
+
+.contact-value a,
+.contact-value {
+    font-size: 20px;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 700;
+    transition: color 0.2s;
+}
+
+.contact-value a:hover { color: rgb(13, 67, 214); }
