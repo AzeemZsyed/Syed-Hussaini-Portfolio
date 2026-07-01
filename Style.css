@@ -7,6 +7,7 @@ body {
     padding: 0;
 }
 
+
 /* ── Bottom Nav ────────────────────────────────────────── */
 .MenuBar {
     background-color: #000;
@@ -287,3 +288,24 @@ body {
 }
 
 .contact-value a:hover { color: rgb(13, 67, 214); }
+
+
+/* Styles in here only apply to mobile and tablet screens */
+@media screen and (max-width: 768px) {
+  
+  /* Change multi-column layouts to a single column stack */
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Make fixed-width sidebars or boxes span full-screen width */
+  .main-content, .sidebar {
+    width: 100%;
+  }
+
+  /* Optimize font sizes so mobile users don't have to pinch-zoom */
+  body {
+    font-size: 16px; 
+  }
+}
