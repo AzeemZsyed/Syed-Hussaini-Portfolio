@@ -289,23 +289,50 @@ body {
 
 .contact-value a:hover { color: rgb(13, 67, 214); }
 
-
-/* Styles in here only apply to mobile and tablet screens */
 @media screen and (max-width: 768px) {
-  
-  /* Change multi-column layouts to a single column stack */
-  .container {
-    display: flex;
+
+  .page-content {
+    padding: 50px 20px 110px;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .exp-item {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .exp-meta {
+    text-align: left;
+  }
+
+  .contact-row {
     flex-direction: column;
+    gap: 8px;
   }
 
-  /* Make fixed-width sidebars or boxes span full-screen width */
-  .main-content, .sidebar {
-    width: 100%;
+  .Name {
+    font-size: 48px;
+    letter-spacing: 5px;
   }
 
-  /* Optimize font sizes so mobile users don't have to pinch-zoom */
+  .MenuBar ul {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding: 0 12px;
+  }
+
+  .MenuBar ul li a {
+    font-size: 18px;
+    white-space: nowrap;
+  }
+
   body {
-    font-size: 16px; 
+    font-size: 16px;
+    overflow-x: hidden;
   }
 }
