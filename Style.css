@@ -1,15 +1,16 @@
 /* ═══════════════════════════════════════════════════════════
    AZ — PORTFOLIO STYLESHEET  ·  "editor" theme
-   The site is styled to read like a code editor: tab strip,
-   activity bar, line-number gutter, minimap, blue status bar.
+   The site is styled to read like a code editor: activity bar,
+   tab strip, line-number gutter, minimap, blue status bar.
    Every rule is still DASHED — that's the one thing borrowed
    from nothing, and it's what keeps this from being a clone.
 
      1. Tokens          7. Experience
      2. Base            8. Contact
      3. Tab nav         9. Projects
-     4. Editor shell   10. Resume
-     5. Home hero      11. Responsive
+     3b. Activity bar  10. Resume
+     4. Editor shell   11. Responsive
+     5. Home hero
      6. About panes
    ═══════════════════════════════════════════════════════════ */
 
@@ -46,7 +47,7 @@
 
     --chrome-h: 38px;    /* tab strip height   */
     --status-h: 26px;    /* status bar height  */
-    --rail-w:   44px;    /* activity bar width */
+    --rail-w:   48px;    /* activity bar width */
     --map-w:    38px;    /* minimap width      */
     --gap:      28px;
 }
@@ -61,6 +62,7 @@ body {
     font-size: 16px;
     margin: 0;
     padding: 0;
+    padding-left: var(--rail-w);   /* clears the activity bar */
     overflow-x: hidden;
 }
 
@@ -70,6 +72,19 @@ a:focus-visible,
 button:focus-visible {
     outline: 1px solid var(--status);
     outline-offset: 2px;
+}
+
+/* Visible to screen readers, invisible on screen. */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 /* Inline accents inside the bio paragraphs. */
@@ -87,8 +102,9 @@ button:focus-visible {
     background-color: var(--tabbar);
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
+    left: var(--rail-w);           /* starts after the rail */
+    right: 0;
+    width: auto;
     z-index: 100;
     border-bottom: 1px dashed var(--hair);
     padding: 0;
@@ -140,8 +156,7 @@ button:focus-visible {
 
 .MenuBar ul li a:hover { background: #2a2d2e; color: var(--dim); }
 
-/* The open file — lit background and a top accent line, the
-   way VS Code marks the active tab. */
+/* The open file — lit background and a top accent line. */
 .MenuBar ul li a.is-active {
     background: var(--editor);
     color: #fff;
@@ -154,35 +169,81 @@ button:focus-visible {
 .MenuBar ul li:last-child a { font-style: italic; }
 
 
+/* ── 3b. Activity bar ──────────────────────────────────────
+   One fixed rail down the left of the viewport, over every
+   page. Two lists: the main group at the top, accounts and
+   settings pushed to the bottom by margin-top: auto.       */
+.activity-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: var(--rail-w);
+    z-index: 200;                  /* above .MenuBar (100) */
+    display: flex;
+    flex-direction: column;
+    background: var(--activity);
+    border-right: 1px dashed var(--hair);
+}
+
+.activity-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.activity-list--bottom { margin-top: auto; padding-bottom: 6px; }
+
+.activity-item {
+    position: relative;            /* the badge anchors here */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    font-size: 20px;
+    color: var(--dimmer);
+    text-decoration: none;
+    transition: color 0.15s;
+}
+
+.activity-item:hover { color: var(--dim); }
+
+/* Selected icon: white, plus the accent bar down the left.
+   Same inset box-shadow trick as the active editor tab,
+   rotated to the left edge. */
+.activity-item.is-active {
+    color: #fff;
+    box-shadow: inset 2px 0 0 0 #fff;
+}
+
+/* Notification badge, pinned to the bottom-right of the icon. */
+.activity-badge {
+    position: absolute;
+    right: 6px;
+    bottom: 8px;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 4px;
+    border-radius: 8px;
+    background: var(--status);
+    color: #fff;
+    font-size: 9px;
+    line-height: 16px;
+    text-align: center;
+    font-family: var(--mono);
+}
+
+
 /* ── 4. Editor shell ───────────────────────────────────────
-   .win is one editor group: tab bar on top, activity rail on
-   the left, minimap on the right, status bar underneath.    */
+   .win is one editor group: tab bar on top, minimap on the
+   right, status bar underneath.                            */
 .win {
     position: relative;
     z-index: 1;
     background: var(--editor);
-    border: 1px dashed var(--line);
+    border: 1px var(--line);
     max-width: 1180px;
     margin: 0 auto var(--gap);
-}
-
-/* Activity bar — the icon rail. */
-.win::before {
-    content: '\2630\A\1F50D\A\2387\A\2699';
-    white-space: pre;
-    position: absolute;
-    top: var(--chrome-h);
-    bottom: var(--status-h);
-    left: 0;
-    width: var(--rail-w);
-    background: var(--activity);
-    border-right: 1px dashed var(--hair);
-    text-align: center;
-    padding-top: 16px;
-    line-height: 2.6;
-    font-size: 15px;
-    color: var(--dimmer);
-    pointer-events: none;
 }
 
 /* Minimap — the scaled-down code preview on the right. */
@@ -193,7 +254,7 @@ button:focus-visible {
     bottom: var(--status-h);
     right: 0;
     width: var(--map-w);
-    border-left: 1px dashed var(--hair);
+    border-left: 1px var(--hair);
     background:
         repeating-linear-gradient(
             to bottom,
@@ -216,7 +277,7 @@ button:focus-visible {
     height: var(--chrome-h);
     padding: 0 14px 0 12px;
     background: var(--tabbar);
-    border-bottom: 1px dashed var(--hair);
+    border-bottom: 1px var(--hair);
     font-size: 12px;
     letter-spacing: 0;
     text-transform: none;
@@ -235,7 +296,7 @@ button:focus-visible {
     text-align: left;
     background: var(--editor);
     padding: 7px 14px;
-    border: 1px dashed var(--hair);
+    border: 1px var(--hair);
     border-bottom: 0;
     box-shadow: inset 0 2px 0 0 var(--status);
 }
@@ -251,10 +312,9 @@ button:focus-visible {
 .win-bar--plain .win-title { text-align: left; }
 .win-meta { color: var(--dimmer); text-align: right; font-size: 11px; }
 
-/* The code area, inset past the rail and the minimap. */
+/* The code area, inset past the minimap. */
 .win-body {
     padding: 28px 30px 34px;
-    padding-left: calc(var(--rail-w) + 26px);
     padding-right: calc(var(--map-w) + 22px);
 }
 
@@ -292,7 +352,6 @@ button:focus-visible {
     align-items: center;
     text-align: center;
     padding: 52px 30px 40px;
-    padding-left: calc(var(--rail-w) + 26px);
     padding-right: calc(var(--map-w) + 22px);
 }
 
@@ -769,7 +828,6 @@ button:focus-visible {
     text-align: center;
     gap: 26px;
     padding: 60px 30px 50px;
-    padding-left: calc(var(--rail-w) + 26px);
     padding-right: calc(var(--map-w) + 22px);
 }
 
@@ -845,8 +903,10 @@ button:focus-visible {
 
 @media screen and (max-width: 768px) {
 
-    /* Activity rail goes too; the editor is all content now. */
-    .win::before { display: none; }
+    /* Rail goes on phones; the tabs take the full width. */
+    .activity-bar { display: none; }
+    body          { padding-left: 0; }
+    .MenuBar      { left: 0; }
 
     .page-content { padding: 64px 10px 44px; }
     .hero-wrap    { padding: 64px 10px 30px; }

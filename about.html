@@ -5,11 +5,75 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="About Syed Azeemuddin Hussaini — third-year Software Engineering student at the University of Guelph.">
   <title>Az — About</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@vscode/codicons@0.0.45/dist/codicon.css">
   <link rel="stylesheet" href="Style.css">
 </head>
 <body>
 
-  <!-- ── Nav ─────────────────────────────────────────────── -->
+  <!-- ── Activity bar ────────────────────────────────────── -->
+  <aside class="activity-bar" aria-label="Activity bar">
+
+    <ul class="activity-list">
+      <li>
+        <a href="About.html" class="activity-item is-active" title="Explorer">
+          <span class="codicon codicon-files" aria-hidden="true"></span>
+          <span class="sr-only">Explorer</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/AzeemZsyed" target="_blank" rel="noopener"
+           class="activity-item" title="Source Control">
+          <span class="codicon codicon-source-control" aria-hidden="true"></span>
+          <span class="activity-badge">3</span>
+          <span class="sr-only">Source Control</span>
+        </a>
+      </li>
+      <li>
+        <a href="Projects.html" class="activity-item" title="Run and Debug">
+          <span class="codicon codicon-debug-alt" aria-hidden="true"></span>
+          <span class="sr-only">Run and Debug</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://linkedin.com/in/azh0" target="_blank" rel="noopener"
+           class="activity-item" title="Remote Explorer">
+          <span class="codicon codicon-remote-explorer" aria-hidden="true"></span>
+          <span class="sr-only">Remote Explorer</span>
+        </a>
+      </li>
+      <li>
+        <a href="Projects.html" class="activity-item" title="Extensions">
+          <span class="codicon codicon-extensions" aria-hidden="true"></span>
+          <span class="activity-badge">1</span>
+          <span class="sr-only">Extensions</span>
+        </a>
+      </li>
+      <li>
+        <a href="Projects.html" class="activity-item" title="Testing">
+          <span class="codicon codicon-beaker" aria-hidden="true"></span>
+          <span class="sr-only">Testing</span>
+        </a>
+      </li>
+    </ul>
+
+    <ul class="activity-list activity-list--bottom">
+      <li>
+        <a href="mailto:shussa21@uoguelph.ca" class="activity-item" title="Accounts">
+          <span class="codicon codicon-account" aria-hidden="true"></span>
+          <span class="sr-only">Accounts</span>
+        </a>
+      </li>
+      <li>
+        <a href="Resume.html" class="activity-item" title="Manage">
+          <span class="codicon codicon-gear" aria-hidden="true"></span>
+          <span class="sr-only">Manage</span>
+        </a>
+      </li>
+    </ul>
+
+  </aside>
+
+  <!-- ── Tab strip ───────────────────────────────────────── -->
   <nav class="MenuBar">
     <ul>
       <li><a href="index.html">Home</a></li>
@@ -45,32 +109,20 @@
 
           <!-- ── Pane: bio ──────────────────────────────── -->
           <div class="pane pane--bio">
-            <p class="bio-head"># Azeem</p>
             <p class="bio">
-              Hey — thanks for stopping by. I'm a third-year
+              Hey, I'm <span class="hl-white">Azeem</span> — a third-year
               <span class="hl-green">Software Engineering</span> student at the
-              <span class="hl-cyan">University of Guelph</span>.
-            </p>
-            <p class="bio">
-              I'm still fairly new to this. I started coding about
-              <span class="hl-orange">two years ago</span> and I've enjoyed pretty much every
-              part of it since. Most of what I build sits between the web and the backend,
-              and lately I've been spending my time in <span class="hl-green">C</span> —
-              search algorithms and things close to the metal.
-            </p>
-            <p class="bio">
-              This summer I shipped an <span class="hl-white">AI voice receptionist</span> that
-              takes real client calls end to end. I also teach kids to code, which is the
-              fastest way I know to find out whether I actually understand something.
-            </p>
-            <p class="bio">
-              Away from the keyboard I play <span class="hl-orange">table tennis</span> and I
-              take <span class="hl-orange">pictures</span> — a few of them are in the gallery
-              below, have a look.
-            </p>
-            <p class="bio">
-              I'm looking for a <span class="hl-white">Summer 2027 co-op</span>. My email is
-              further down the page.
+              <span class="hl-cyan">University of Guelph</span>. I picked up my first
+              language about <span class="hl-orange">two years ago</span> and haven't
+              really stopped since. Front end is where I feel most at home — I like being
+              able to see the thing I'm building change as I build it — but I've been
+              working my way through the <span class="hl-cyan">back end</span> too, and
+              I've got a project on the go right now that I'm not quite ready to show off.
+              Away from the keyboard I play <span class="hl-orange">table tennis</span>
+              and take <span class="hl-orange">pictures</span>, a few of which are in the
+              gallery below. I'm looking for a
+              <span class="hl-white">Summer 2027 co-op</span> — my email is further down
+              the page, and I'd be glad to hear from you.
             </p>
           </div>
 
@@ -105,8 +157,8 @@
               </thead>
               <tbody>
                 <tr><td>studying</td><td>3rd year software engineering</td></tr>
-                <tr><td>building</td><td>rubik's cube solver in C</td></tr>
-                <tr><td>reading</td><td>anything on algorithms</td></tr>
+                <tr><td>building</td><td>something not ready yet</td></tr>
+                <tr><td>learning</td><td>more back end</td></tr>
                 <tr><td>playing</td><td>table tennis</td></tr>
                 <tr><td>shooting</td><td>photos around guelph</td></tr>
               </tbody>
@@ -226,5 +278,5 @@
         <span>most recent first</span>
       </footer>
     </section>
-
-    <!-- ══ Window 3: contact.cfg ════════════════════════════ -->
+</body>
+    </html>

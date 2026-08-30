@@ -3,13 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Projects by Syed Azeemuddin Hussaini — AI receptionist, Rubik's Cube solver, and more.">
+  <meta name="description" content="Projects by Syed Azeemuddin Hussaini — coming soon.">
   <title>Az — Projects</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@vscode/codicons@0.0.45/dist/codicon.css">
   <link rel="stylesheet" href="Style.css">
 </head>
 <body>
 
-  <!-- ── Nav ─────────────────────────────────────────────── -->
+  <!-- ── Activity bar ────────────────────────────────────── -->
+  <aside class="activity-bar" aria-label="Activity bar">
+
+    <ul class="activity-list">
+      <li>
+        <a href="About.html" class="activity-item is-active" title="Explorer">
+          <span class="codicon codicon-files" aria-hidden="true"></span>
+          <span class="sr-only">Explorer</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/AzeemZsyed" target="_blank" rel="noopener"
+           class="activity-item" title="Source Control">
+          <span class="codicon codicon-source-control" aria-hidden="true"></span>
+          <span class="activity-badge">3</span>
+          <span class="sr-only">Source Control</span>
+        </a>
+      </li>
+      <li>
+        <a href="Projects.html" class="activity-item" title="Run and Debug">
+          <span class="codicon codicon-debug-alt" aria-hidden="true"></span>
+          <span class="sr-only">Run and Debug</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://linkedin.com/in/azh0" target="_blank" rel="noopener"
+           class="activity-item" title="Remote Explorer">
+          <span class="codicon codicon-remote-explorer" aria-hidden="true"></span>
+          <span class="sr-only">Remote Explorer</span>
+        </a>
+      </li>
+      <li>
+        <a href="Projects.html" class="activity-item" title="Extensions">
+          <span class="codicon codicon-extensions" aria-hidden="true"></span>
+          <span class="activity-badge">1</span>
+          <span class="sr-only">Extensions</span>
+        </a>
+      </li>
+      <li>
+        <a href="Projects.html" class="activity-item" title="Testing">
+          <span class="codicon codicon-beaker" aria-hidden="true"></span>
+          <span class="sr-only">Testing</span>
+        </a>
+      </li>
+    </ul>
+
+    <ul class="activity-list activity-list--bottom">
+      <li>
+        <a href="mailto:shussa21@uoguelph.ca" class="activity-item" title="Accounts">
+          <span class="codicon codicon-account" aria-hidden="true"></span>
+          <span class="sr-only">Accounts</span>
+        </a>
+      </li>
+      <li>
+        <a href="Resume.html" class="activity-item" title="Manage">
+          <span class="codicon codicon-gear" aria-hidden="true"></span>
+          <span class="sr-only">Manage</span>
+        </a>
+      </li>
+    </ul>
+
+  </aside>
+
+  <!-- ── Tab strip ───────────────────────────────────────── -->
   <nav class="MenuBar">
     <ul>
       <li><a href="index.html">Home</a></li>
@@ -39,47 +103,22 @@
 
         <div class="proj-list">
 
-          <article class="proj">
-            <div class="proj-head">
-              <h2 class="proj-name">AI Receptionist</h2>
-              <span class="proj-client">Ortho Care Services</span>
-            </div>
-            <p class="proj-stack">Python · Claude API · BiziBizi</p>
-            <ul class="exp-bullets">
-              <li>Voice receptionist that takes real patient calls end to end — appointment booking, service inquiries, clinic hours, and FAQs — with no human staff on the line</li>
-              <li>Python backend handles the business logic, pulls clinic data, and talks to the Claude API so answers stay accurate and consistent between calls</li>
-              <li>Validated against 70+ scripted test calls covering routing, edge cases, and multi-turn scenarios before going live</li>
-            </ul>
-          </article>
-
-          <article class="proj">
-            <div class="proj-head">
-              <h2 class="proj-name">Rubik's Cube Solver</h2>
-              <span class="proj-client">Personal</span>
-            </div>
-            <p class="proj-stack">C · JavaScript</p>
-            <ul class="exp-bullets">
-              <li>Solver written in C using BFS and IDA* search to find optimal move sequences, modelling the full cube state in memory and implementing all 18 legal moves</li>
-              <li>JavaScript frontend wired to the C backend — feed it any scrambled state and it animates the solution step by step</li>
-            </ul>
-          </article>
-
           <article class="proj proj--soon">
             <div class="proj-head">
-              <h2 class="proj-name">Next build</h2>
+              <h2 class="proj-name">Coming soon</h2>
               <span class="proj-client">In progress</span>
             </div>
-            <p class="proj-stack">Something in C, probably</p>
-            <p class="proj-soon-note">Still compiling. Check back shortly, or watch
-              <a href="https://github.com/AzeemZsyed" target="_blank" rel="noopener">github.com/AzeemZsyed</a>.</p>
+            <p class="proj-soon-note">Still working on it. Check back shortly, or watch
+              <a href="https://github.com/AzeemZsyed" target="_blank" rel="noopener">github.com/AzeemZsyed</a>
+              to see what I'm pushing.</p>
           </article>
 
         </div>
       </div>
 
       <footer class="win-status">
-        <span>3 items</span>
-        <span>1 in progress</span>
+        <span>0 items</span>
+        <span>still building</span>
       </footer>
 
     </section>
