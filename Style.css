@@ -1,115 +1,307 @@
-/* ── Base ──────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════
+   AZ — PORTFOLIO STYLESHEET  ·  "editor" theme
+   The site is styled to read like a code editor: tab strip,
+   activity bar, line-number gutter, minimap, blue status bar.
+   Every rule is still DASHED — that's the one thing borrowed
+   from nothing, and it's what keeps this from being a clone.
+
+     1. Tokens          7. Experience
+     2. Base            8. Contact
+     3. Tab nav         9. Projects
+     4. Editor shell   10. Resume
+     5. Home hero      11. Responsive
+     6. About panes
+   ═══════════════════════════════════════════════════════════ */
+
+
+/* ── 1. Tokens ─────────────────────────────────────────────
+   Surfaces are the editor chrome. Accents are syntax colours,
+   so the five-colour system from before still works — it just
+   maps onto keyword / string / type / comment / error now.  */
 :root {
     --mono: ui-monospace, "SF Mono", Menlo, Consolas, "Courier New", monospace;
 
-    --red:    rgb(214, 30, 60);
-    --green:  #16a92a;
-    --blue:   rgb(39, 11, 123);
-    --orange: rgb(236, 94, 36);
-    --cyan:   rgb(4, 93, 128);
+    /* Syntax accents */
+    --red:    #f14c4c;   /* error      */
+    --green:  #6a9955;   /* comment    */
+    --blue:   #569cd6;   /* keyword    */
+    --orange: #ce9178;   /* string     */
+    --cyan:   #4ec9b0;   /* type       */
+    --yellow: #dcdcaa;   /* function   */
+    --violet: #c586c0;   /* control    */
 
-    --line:   #fcf9f9;
-    --dim:    #5a5a5a;
-    --dimmer: #3a3a3a;
+    /* Editor chrome */
+    --editor:  #1e1e1e;  /* the code area          */
+    --sidebar: #252526;  /* explorer / side panes  */
+    --tabbar:  #2d2d2d;  /* inactive tab strip     */
+    --activity:#333333;  /* icon rail              */
+    --status:  #007acc;  /* the blue bar           */
+
+    /* Lines and text */
+    --line:   #4a4a4a;   /* the loud dashed rule   */
+    --hair:   #333333;   /* the quiet dashed rule  */
+    --dim:    #d4d4d4;   /* body copy              */
+    --dimmer: #858585;   /* gutter, captions, meta */
+    --off:    #333333;   /* unfilled meter cells   */
+
+    --chrome-h: 38px;    /* tab strip height   */
+    --status-h: 26px;    /* status bar height  */
+    --rail-w:   44px;    /* activity bar width */
+    --map-w:    38px;    /* minimap width      */
+    --gap:      28px;
 }
+
+
+/* ── 2. Base ───────────────────────────────────────────────*/
+* { box-sizing: border-box; }
 
 body {
     background-color: #000;
     font-family: var(--mono);
-    font-size: medium;
+    font-size: 16px;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 
-/* ── Top Nav ───────────────────────────────────────────── */
+a { color: inherit; }
+
+a:focus-visible,
+button:focus-visible {
+    outline: 1px solid var(--status);
+    outline-offset: 2px;
+}
+
+/* Inline accents inside the bio paragraphs. */
+.hl-white  { color: #fff; }
+.hl-green  { color: var(--cyan); }
+.hl-cyan   { color: var(--blue); }
+.hl-orange { color: var(--orange); }
+
+
+/* ── 3. Tab nav ────────────────────────────────────────────
+   The site nav is the editor's open-files tab strip. Each tab
+   gets a coloured file-type dot and a file extension, both
+   added in CSS so the HTML stays clean.                     */
 .MenuBar {
-    background-color: #000;
+    background-color: var(--tabbar);
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 100;
-    border-bottom: 3px dashed var(--line);
-    padding: 8px 0 6px;
+    border-bottom: 1px dashed var(--hair);
+    padding: 0;
 }
 
 .MenuBar ul {
     display: flex;
-    justify-content: center;
-    gap: 14px;
+    justify-content: flex-start;
+    gap: 0;
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
 .MenuBar ul li a {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: var(--chrome-h);
     font-family: var(--mono);
-    color: darkgrey;
-    font-size: 17px;
-    text-transform: uppercase;
+    color: var(--dimmer);
+    font-size: 13px;
+    text-transform: lowercase;
     text-decoration: none;
-    padding: 4px 10px;
-    transition: color 0.2s;
+    padding: 0 16px;
+    border-right: 1px dashed var(--hair);
+    transition: background 0.15s, color 0.15s;
 }
 
-.MenuBar ul li:nth-child(1) a:hover { color: var(--red); }
-.MenuBar ul li:nth-child(2) a:hover { color: var(--green); }
-.MenuBar ul li:nth-child(3) a:hover { color: var(--blue); }
-.MenuBar ul li:nth-child(4) a:hover { color: var(--orange); }
-.MenuBar ul li:nth-child(5) a:hover { color: var(--cyan); }
+/* File-type dot, one accent per tab. */
+.MenuBar ul li a::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
 
-/* Resume button */
-.MenuBar ul li:last-child a {
+.MenuBar ul li:nth-child(1) a::before { background: var(--orange); }
+.MenuBar ul li:nth-child(2) a::before { background: var(--blue); }
+.MenuBar ul li:nth-child(3) a::before { background: var(--yellow); }
+.MenuBar ul li:nth-child(4) a::before { background: var(--red); }
+
+/* Extensions, appended so the tabs read as filenames. */
+.MenuBar ul li:nth-child(1) a::after { content: '.html'; color: var(--hair); }
+.MenuBar ul li:nth-child(2) a::after { content: '.html'; color: var(--hair); }
+.MenuBar ul li:nth-child(3) a::after { content: '.html'; color: var(--hair); }
+.MenuBar ul li:nth-child(4) a::after { content: '.pdf';  color: var(--hair); }
+
+.MenuBar ul li a:hover { background: #2a2d2e; color: var(--dim); }
+
+/* The open file — lit background and a top accent line, the
+   way VS Code marks the active tab. */
+.MenuBar ul li a.is-active {
+    background: var(--editor);
     color: #fff;
-    border: 0.5px solid #fff;
-    margin-left: 0.5rem;
-    transition: background 0.2s, color 0.2s;
+    box-shadow: inset 0 2px 0 0 var(--status);
 }
 
-.MenuBar ul li:last-child a:hover {
-    background: #fff;
-    color: #000;
+.MenuBar ul li a.is-active::after { color: var(--dimmer); }
+
+/* Resume is the "modified" file — italic, like an unsaved tab. */
+.MenuBar ul li:last-child a { font-style: italic; }
+
+
+/* ── 4. Editor shell ───────────────────────────────────────
+   .win is one editor group: tab bar on top, activity rail on
+   the left, minimap on the right, status bar underneath.    */
+.win {
+    position: relative;
+    z-index: 1;
+    background: var(--editor);
+    border: 1px dashed var(--line);
+    max-width: 1180px;
+    margin: 0 auto var(--gap);
 }
 
-/* ── Brand (home, top left) ────────────────────────────── */
-.brand {
-    position: fixed;
-    top: 0;
-    left: 28px;
-    z-index: 101;
-    margin: 0;
-    padding: 12px 0;
+/* Activity bar — the icon rail. */
+.win::before {
+    content: '\2630\A\1F50D\A\2387\A\2699';
+    white-space: pre;
+    position: absolute;
+    top: var(--chrome-h);
+    bottom: var(--status-h);
+    left: 0;
+    width: var(--rail-w);
+    background: var(--activity);
+    border-right: 1px dashed var(--hair);
+    text-align: center;
+    padding-top: 16px;
+    line-height: 2.6;
     font-size: 15px;
-    font-weight: 700;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    letter-spacing: 3px;
-    text-transform: uppercase;
+    color: var(--dimmer);
+    pointer-events: none;
+}
+
+/* Minimap — the scaled-down code preview on the right. */
+.win::after {
+    content: '';
+    position: absolute;
+    top: var(--chrome-h);
+    bottom: var(--status-h);
+    right: 0;
+    width: var(--map-w);
+    border-left: 1px dashed var(--hair);
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            rgba(212, 212, 212, 0.22) 0 2px,
+            transparent 2px 6px
+        );
+    background-size: 60% 100%;
+    background-repeat: no-repeat;
+    background-position: 6px 12px;
+    opacity: 0.55;
+    pointer-events: none;
+}
+
+/* Tab strip. */
+.win-bar {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    align-items: center;
+    gap: 14px;
+    height: var(--chrome-h);
+    padding: 0 14px 0 12px;
+    background: var(--tabbar);
+    border-bottom: 1px dashed var(--hair);
+    font-size: 12px;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+/* Window controls. */
+.win-dots { display: flex; gap: 7px; }
+.win-dots i { width: 11px; height: 11px; display: block; border-radius: 50%; }
+.win-dots i:nth-child(1) { background: #ff5f56; }
+.win-dots i:nth-child(2) { background: #ffbd2e; }
+.win-dots i:nth-child(3) { background: #27c93f; }
+
+/* The title reads as the active tab. */
+.win-title {
+    color: #fff;
+    text-align: left;
+    background: var(--editor);
+    padding: 7px 14px;
+    border: 1px dashed var(--hair);
+    border-bottom: 0;
+    box-shadow: inset 0 2px 0 0 var(--status);
+}
+
+.win-clock {
+    color: var(--dimmer);
+    text-align: right;
+    font-size: 11px;
+    font-variant-numeric: tabular-nums;
+}
+
+.win-bar--plain { grid-template-columns: auto 1fr; padding-left: 14px; }
+.win-bar--plain .win-title { text-align: left; }
+.win-meta { color: var(--dimmer); text-align: right; font-size: 11px; }
+
+/* The code area, inset past the rail and the minimap. */
+.win-body {
+    padding: 28px 30px 34px;
+    padding-left: calc(var(--rail-w) + 26px);
+    padding-right: calc(var(--map-w) + 22px);
+}
+
+/* Status bar. */
+.win-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    height: var(--status-h);
+    padding: 0 14px;
+    background: var(--status);
+    border-top: 0;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    text-transform: none;
     color: #fff;
 }
 
-/* ── Home Hero ─────────────────────────────────────────── */
-.head {
+
+/* ── 5. Home hero ──────────────────────────────────────────*/
+.hero-wrap {
     min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 78px 24px 40px;
+}
+
+.win--hero { width: 100%; max-width: 900px; margin-bottom: 0; }
+
+.hero-body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     text-align: center;
-    position: relative;
-    z-index: 1;
-    padding: 64px 16px 0;
-    box-sizing: border-box;
+    padding: 52px 30px 40px;
+    padding-left: calc(var(--rail-w) + 26px);
+    padding-right: calc(var(--map-w) + 22px);
 }
 
 .Name {
-    font-size: 18px;
+    font-size: clamp(9px, 3.1vw, 18px);
     line-height: 1.05;
-    letter-spacing: 0;
     font-weight: 400;
     color: #fff;
-    -webkit-text-stroke: 0;
-    margin: 0 auto;
+    margin: 0;
     white-space: pre;
     display: inline-block;
     text-align: left;
@@ -118,63 +310,319 @@ body {
 
 .SubTitle {
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 400;
     color: var(--cyan);
-    letter-spacing: 5px;
+    letter-spacing: 4px;
     text-transform: uppercase;
-    margin-top: 24px;
+    margin: 24px 0 0;
 }
 
-/* ── Page Banner Art ───────────────────────────────────── */
+/* The prompt list becomes the integrated terminal panel. */
+.prompt-list {
+    list-style: none;
+    position: relative;
+    margin: 42px 0 0;
+    padding: 40px 16px 14px;
+    background: #181818;
+    border: 1px dashed var(--hair);
+    width: 100%;
+    max-width: 460px;
+    text-align: left;
+    font-size: 13px;
+    line-height: 2.1;
+}
+
+/* Panel tabs, drawn in CSS. */
+.prompt-list::before {
+    content: 'PROBLEMS    OUTPUT    TERMINAL';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 7px 16px;
+    background: var(--tabbar);
+    border-bottom: 1px dashed var(--hair);
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--dimmer);
+}
+
+.prompt-sigil { color: var(--cyan); }
+.prompt-path  { color: var(--blue); margin-right: 8px; }
+
+.prompt-list a { color: var(--dim); text-decoration: none; transition: color 0.2s; }
+.prompt-list a:hover { color: #fff; text-decoration: underline; }
+
+/* Editor caret. */
+.caret {
+    display: inline-block;
+    width: 2px;
+    height: 16px;
+    background: #aeafad;
+    vertical-align: -3px;
+    animation: blink 1.1s steps(1) infinite;
+}
+
+@keyframes blink { 50% { opacity: 0; } }
+
+
+/* ── 6. About panes ────────────────────────────────────────*/
+.page-content {
+    position: relative;
+    z-index: 1;
+    padding: 78px 24px 60px;
+    max-width: 1240px;
+    margin: 0 auto;
+}
+
 .PageArt {
-    font-size: 8px;
+    font-size: clamp(4px, 1.05vw, 9px);
     line-height: 1.05;
-    letter-spacing: 0;
     font-weight: 400;
     color: #fff;
-    -webkit-text-stroke: 0;
-    margin: 0;
+    margin: 0 0 28px;
     white-space: pre;
     display: block;
     transform: skewX(-10deg);
     transform-origin: left bottom;
 }
 
-/* ── Shared Page Layout ────────────────────────────────── */
-.page-content {
-    position: relative;
-    z-index: 1;
-    padding: 70px 60px 80px;
-    max-width: 1000px;
-    margin: 0 auto;
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 1.05fr 0.85fr;
+    border-top: 1px dashed var(--line);
 }
 
-/* ── Experience Page ───────────────────────────────────── */
-.exp-list {
-    display: flex;
-    flex-direction: column;
-    gap: 48px;
-    margin-top: 36px;
+.pane { padding: 22px 24px; }
+
+.pane--bio {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    padding-left: 0;
+    border-right: 1px dashed var(--hair);
+    counter-reset: gutter;          /* line numbers start here */
 }
+
+/* Side panes are the explorer, so they take the sidebar tone. */
+.pane--stats {
+    grid-column: 2;
+    grid-row: 1;
+    background: var(--sidebar);
+    border-right: 1px dashed var(--hair);
+}
+
+.pane--links {
+    grid-column: 3;
+    grid-row: 1;
+    background: var(--sidebar);
+    padding-right: 24px;
+}
+
+.pane--gallery {
+    grid-column: 2 / span 2;
+    grid-row: 2;
+    background: var(--sidebar);
+    border-top: 1px dashed var(--hair);
+}
+
+/* Line-number gutter. Each paragraph increments the counter
+   and prints it in the margin — pure CSS, no extra markup.  */
+.bio-head,
+.bio {
+    position: relative;
+    padding-left: 46px;
+    counter-increment: gutter;
+}
+
+.bio-head::before,
+.bio::before {
+    content: counter(gutter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 30px;
+    text-align: right;
+    color: var(--dimmer);
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+.bio-head {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--green);            /* reads as a comment line */
+    margin: 0 0 14px;
+}
+
+.bio {
+    font-size: 13px;
+    line-height: 1.95;
+    color: var(--dim);
+    margin: 0 0 14px;
+}
+
+.bio:last-child { margin-bottom: 0; }
+
+/* Meters. */
+.meter {
+    display: grid;
+    grid-template-columns: 62px 1fr 48px;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    margin-bottom: 7px;
+}
+
+.meter-key { color: var(--blue); }
+.meter-bar { letter-spacing: 0.5px; white-space: nowrap; overflow: hidden; }
+.meter-bar .on  { color: var(--cyan); }
+.meter-bar .off { color: var(--off); }
+.meter-val {
+    color: var(--dimmer);
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.meter-note {
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--dimmer);
+    margin: 12px 0 20px;
+}
+
+/* The "what I'm up to" table, styled as a panel list. */
+.now {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11.5px;
+}
+
+.now th {
+    background: transparent;
+    color: var(--dimmer);
+    text-align: left;
+    font-weight: 400;
+    letter-spacing: 2px;
+    padding: 4px 8px;
+    border-bottom: 1px dashed var(--hair);
+}
+
+.now td {
+    padding: 5px 8px;
+    color: var(--dim);
+    vertical-align: top;
+}
+
+.now tbody tr td:first-child { color: var(--violet); white-space: nowrap; }
+
+/* Link list, coloured like a markdown source file. */
+.md-link {
+    font-size: 12.5px;
+    margin: 0 0 14px;
+    line-height: 1.7;
+    word-break: break-word;
+}
+
+.md-key { color: var(--blue); }
+
+.md-link a { color: var(--orange); text-decoration: none; transition: color 0.2s; }
+.md-link a:hover { color: #fff; text-decoration: underline; }
+
+/* Gallery: explorer tree on the left, preview on the right. */
+.gallery {
+    display: grid;
+    grid-template-columns: 178px 1fr;
+    gap: 24px;
+}
+
+.dir-label {
+    display: block;
+    background: transparent;
+    color: var(--dimmer);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0 0 8px;
+    margin: 0 0 6px;
+    border-bottom: 1px dashed var(--hair);
+}
+
+.file-list { list-style: none; margin: 0; padding: 0; }
+
+.file {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: 0;
+    padding: 5px 8px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--dim);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+
+.file:hover { background: #2a2d2e; }
+
+/* Selected file — highlight plus the left accent bar. */
+.file.is-active {
+    background: #37373d;
+    color: #fff;
+    box-shadow: inset 2px 0 0 0 var(--status);
+}
+
+.gallery-view { margin: 0; }
+
+.gallery-img {
+    display: block;
+    max-width: 100%;
+    max-height: 280px;
+    object-fit: cover;
+    border: 1px dashed var(--hair);
+}
+
+.gallery-empty {
+    border: 1px dashed var(--hair);
+    padding: 48px 16px;
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--dimmer);
+    margin: 0;
+}
+
+.gallery-caption {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--dimmer);
+    margin-top: 8px;
+}
+
+
+/* ── 7. Experience ─────────────────────────────────────────*/
+.exp-list { display: flex; flex-direction: column; gap: 40px; }
 
 .exp-item {
     display: grid;
     grid-template-columns: 160px 1fr;
     gap: 0 40px;
-    border-top: 3px dashed var(--line);
-    padding-top: 28px;
+    border-top: 1px dashed var(--line);
+    padding-top: 24px;
 }
 
-.exp-meta {
-    text-align: right;
-}
+.exp-meta { text-align: right; }
 
 .exp-date {
     font-size: 11px;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     color: var(--orange);
     text-transform: uppercase;
     line-height: 1.6;
+    margin: 0;
 }
 
 .exp-location {
@@ -182,13 +630,13 @@ body {
     color: var(--dimmer);
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-top: 4px;
+    margin: 4px 0 0;
 }
 
 .exp-role {
     font-size: 13px;
-    font-weight: 700;
-    color: var(--green);
+    font-weight: 400;
+    color: var(--cyan);
     text-transform: uppercase;
     letter-spacing: 2px;
     margin: 0 0 2px;
@@ -197,145 +645,157 @@ body {
 .exp-company {
     font-size: 22px;
     font-weight: 700;
-    color: #fff;
+    color: var(--yellow);
     text-transform: uppercase;
     letter-spacing: 3px;
     margin: 0 0 14px;
 }
 
-.exp-bullets {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
+.exp-bullets { list-style: none; padding: 0; margin: 0; }
 
 .exp-bullets li {
     font-size: 12.5px;
     color: var(--dim);
-    line-height: 1.75;
-    padding-left: 16px;
+    line-height: 1.8;
+    padding-left: 18px;
     position: relative;
-    margin-bottom: 8px;
+    margin-bottom: 9px;
 }
 
 .exp-bullets li::before {
     content: '—';
     position: absolute;
     left: 0;
-    color: var(--cyan);
+    color: var(--blue);
 }
 
-/* ── Coming Soon ───────────────────────────────────────── */
-.coming-soon {
-    border-top: 3px dashed var(--line);
-    margin-top: 36px;
-    padding-top: 80px;
-    padding-bottom: 80px;
-    text-align: center;
-}
 
-.coming-soon-title {
-    font-size: 30px;
-    font-weight: 700;
-    color: var(--orange);
-    text-transform: uppercase;
-    letter-spacing: 6px;
-    margin: 0 0 14px;
-}
-
-.coming-soon-sub {
-    font-size: 12px;
-    color: var(--dim);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin: 0;
-}
-
-/* ── Contact Page ──────────────────────────────────────── */
-.contact-block {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    margin-top: 36px;
-}
+/* ── 8. Contact ────────────────────────────────────────────*/
+.contact-block { display: flex; flex-direction: column; gap: 26px; }
 
 .contact-row {
     display: flex;
     align-items: baseline;
     gap: 24px;
-    border-top: 3px dashed var(--line);
-    padding-top: 24px;
+    border-top: 1px dashed var(--line);
+    padding-top: 20px;
 }
 
 .contact-label {
     font-size: 10px;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: var(--dim);
     width: 100px;
     flex-shrink: 0;
 }
 
-.contact-value a,
-.contact-value {
+.contact-value,
+.contact-value a {
     font-family: var(--mono);
-    font-size: 19px;
-    color: #fff;
+    font-size: 18px;
+    color: var(--dim);
     text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 700;
+    text-transform: lowercase;
+    letter-spacing: 1px;
+    font-weight: 400;
     transition: color 0.2s;
 }
 
 .contact-row:nth-child(1) .contact-label { color: var(--blue); }
-.contact-row:nth-child(2) .contact-label { color: var(--green); }
+.contact-row:nth-child(2) .contact-label { color: var(--cyan); }
 .contact-row:nth-child(3) .contact-label { color: var(--orange); }
-.contact-row:nth-child(4) .contact-label { color: var(--cyan); }
-.contact-row:nth-child(5) .contact-label { color: var(--red); }
+.contact-row:nth-child(4) .contact-label { color: var(--yellow); }
+.contact-row:nth-child(5) .contact-label { color: var(--violet); }
 
-.contact-row:nth-child(1) .contact-value a:hover { color: var(--blue); }
-.contact-row:nth-child(2) .contact-value a:hover { color: var(--green); }
-.contact-row:nth-child(3) .contact-value a:hover { color: var(--orange); }
-.contact-row:nth-child(4) .contact-value a:hover { color: var(--cyan); }
+.contact-row .contact-value a:hover { color: #fff; text-decoration: underline; }
 
-/* ── Resume Page ───────────────────────────────────────── */
+
+/* ── 9. Projects ───────────────────────────────────────────*/
+.proj-list { display: flex; flex-direction: column; gap: 40px; }
+
+.proj { border-top: 1px dashed var(--line); padding-top: 24px; }
+
+.proj-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.proj-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--yellow);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin: 0;
+}
+
+.proj-client {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--dimmer);
+}
+
+.proj-stack {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin: 8px 0 16px;
+}
+
+.proj--soon .proj-name,
+.proj--soon .proj-stack { color: var(--orange); }
+
+.proj-soon-note {
+    font-size: 12.5px;
+    color: var(--dim);
+    line-height: 1.8;
+    margin: 0;
+}
+
+.proj-soon-note a { color: var(--blue); text-decoration: none; }
+.proj-soon-note a:hover { color: #fff; text-decoration: underline; }
+
+
+/* ── 10. Resume ────────────────────────────────────────────*/
 .resume-cta {
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 1;
     text-align: center;
-    gap: 32px;
-    padding: 64px 16px 0;
-    box-sizing: border-box;
+    gap: 26px;
+    padding: 60px 30px 50px;
+    padding-left: calc(var(--rail-w) + 26px);
+    padding-right: calc(var(--map-w) + 22px);
 }
 
 .resume-label {
     font-size: 11px;
-    letter-spacing: 5px;
+    letter-spacing: 4px;
     text-transform: uppercase;
     color: var(--cyan);
     margin: 0;
 }
 
+/* The one loud element left — outlined display type. */
 .resume-download {
     font-family: var(--mono);
-    font-size: 48px;
+    font-size: clamp(26px, 6vw, 48px);
     font-weight: 700;
     color: transparent;
     -webkit-text-stroke: 1.5px #fff;
     text-transform: uppercase;
     letter-spacing: 6px;
     text-decoration: none;
-    transition: all 0.3s;
+    transition: color 0.3s, -webkit-text-stroke 0.3s;
 }
 
 .resume-download:hover {
-    color: var(--green);
+    color: var(--yellow);
     -webkit-text-stroke: 0px;
 }
 
@@ -347,59 +807,88 @@ body {
     margin: 0;
 }
 
+.resume-file {
+    display: flex;
+    gap: 18px;
+    align-items: baseline;
+    border-top: 1px dashed var(--hair);
+    padding-top: 16px;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.resume-file-name { color: var(--orange); }
+.resume-file-meta { color: var(--dimmer); }
+
+
+/* ── 11. Responsive ────────────────────────────────────────*/
+@media screen and (max-width: 1100px) {
+    /* Minimap goes first — it's the least useful at this size. */
+    .win::after { display: none; }
+    .win-body,
+    .hero-body,
+    .resume-cta { padding-right: 26px; }
+}
+
+@media screen and (max-width: 900px) {
+    .about-grid { display: block; }
+
+    .pane { padding: 22px 0; border-right: 0; background: transparent; }
+    .pane--bio,
+    .pane--stats,
+    .pane--links { border-bottom: 1px dashed var(--hair); }
+    .pane--gallery { border-top: 0; }
+
+    .gallery { grid-template-columns: 1fr; gap: 16px; }
+    .gallery-img { max-height: 300px; width: 100%; }
+}
+
 @media screen and (max-width: 768px) {
 
-  .brand {
-    display: none;
-  }
+    /* Activity rail goes too; the editor is all content now. */
+    .win::before { display: none; }
 
-  .page-content {
-    padding: 60px 20px 60px;
-    max-width: 100%;
-    overflow-x: hidden;
-  }
+    .page-content { padding: 64px 10px 44px; }
+    .hero-wrap    { padding: 64px 10px 30px; }
 
-  .PageArt {
-    font-size: clamp(2px, 1vw, 5px);
-  }
+    .win-body,
+    .hero-body,
+    .resume-cta { padding: 22px 16px 26px; }
 
-  .exp-item {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
+    .win-bar    { gap: 10px; padding: 0 10px; grid-template-columns: auto 1fr; }
+    .win-dots   { display: none; }
+    .win-clock  { display: none; }
+    .win-title  { padding: 6px 10px; font-size: 11px; }
+    .win-status { font-size: 9px; padding: 0 10px; }
+    .win-meta   { font-size: 10px; }
 
-  .exp-meta {
-    text-align: left;
-  }
+    .bio-head, .bio { padding-left: 34px; }
+    .bio-head::before, .bio::before { width: 22px; font-size: 11px; }
 
-  .contact-row {
-    flex-direction: column;
-    gap: 8px;
-  }
+    .meter        { grid-template-columns: 58px 1fr 44px; font-size: 11px; }
+    .now          { font-size: 11px; }
 
-  .coming-soon-title {
-    font-size: 20px;
-    letter-spacing: 4px;
-  }
+    .exp-item     { grid-template-columns: 1fr; gap: 12px; }
+    .exp-meta     { text-align: left; }
+    .exp-company,
+    .proj-name    { font-size: 18px; letter-spacing: 2px; }
 
-  .resume-download {
-    font-size: 30px;
-    letter-spacing: 4px;
-  }
+    .contact-row  { flex-direction: column; gap: 6px; }
+    .contact-value,
+    .contact-value a { font-size: 15px; }
 
-  .MenuBar ul {
-    justify-content: flex-start;
-    overflow-x: auto;
-    padding: 0 12px;
-  }
+    .prompt-list  { font-size: 12px; }
 
-  .MenuBar ul li a {
-    font-size: 17px;
-    white-space: nowrap;
-  }
+    .MenuBar ul   { overflow-x: auto; }
+    .MenuBar ul li a { font-size: 12px; padding: 0 12px; white-space: nowrap; }
+    .MenuBar ul li a::after { display: none; }   /* drop extensions, save width */
+}
 
-  body {
-    font-size: 16px;
-    overflow-x: hidden;
-  }
+/* Anyone whose OS asks for reduced motion gets a still page. */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+    }
 }

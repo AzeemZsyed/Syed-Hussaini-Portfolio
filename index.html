@@ -1,35 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Az — Portfolio</title>
-    <link rel="stylesheet" href="Style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Syed Azeemuddin Hussaini — Software Engineering Co-op student at the University of Guelph.">
+  <title>Az — Portfolio</title>
+  <link rel="stylesheet" href="Style.css">
 </head>
 <body>
 
+  <!-- ── Nav ─────────────────────────────────────────────── -->
   <nav class="MenuBar">
     <ul>
       <li><a href="index.html">Home</a></li>
-      <li><a href="Experience.html">Experience</a></li>
-      <li><a href="Contact.html">Contact</a></li>
+      <li><a href="About.html">About</a></li>
       <li><a href="Projects.html">Projects</a></li>
       <li><a href="Resume.html">Resume</a></li>
     </ul>
   </nav>
 
+  <!-- ── Hero window ─────────────────────────────────────── -->
+  <main class="hero-wrap">
+    <section class="win win--hero">
 
+      <header class="win-bar">
+        <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="win-title">az@guelph: ~</span>
+        <span class="win-clock" data-clock>--:--:--</span>
+      </header>
 
-  <div class="head">
-    <pre class="Name">
+      <div class="win-body hero-body">
+        <pre class="Name" role="img" aria-label="Azeem">
  █████╗ ███████╗███████╗███████╗███╗   ███╗
 ██╔══██╗╚══███╔╝██╔════╝██╔════╝████╗ ████║
 ███████║  ███╔╝ █████╗  █████╗  ██╔████╔██║
 ██╔══██║ ███╔╝  ██╔══╝  ██╔══╝  ██║╚██╔╝██║
 ██║  ██║███████╗███████╗███████╗██║ ╚═╝ ██║
 ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝╚═╝     ╚═╝</pre>
-    <p class="SubTitle">Software Engineering &nbsp;·&nbsp; University of Guelph</p>
-  </div>
+
+        <p class="SubTitle">Software Engineering &nbsp;·&nbsp; University of Guelph</p>
+
+        <ul class="prompt-list">
+          <li><span class="prompt-sigil">az@guelph</span><span class="prompt-path">:~$</span>
+            <a href="About.html">cat about_me.md</a></li>
+          <li><span class="prompt-sigil">az@guelph</span><span class="prompt-path">:~$</span>
+            <a href="Projects.html">ls projects/</a></li>
+          <li><span class="prompt-sigil">az@guelph</span><span class="prompt-path">:~$</span>
+            <a href="Resume.html">open resume.pdf</a></li>
+          <li class="prompt-idle"><span class="prompt-sigil">az@guelph</span><span class="prompt-path">:~$</span>
+            <span class="caret" aria-hidden="true"></span></li>
+        </ul>
+      </div>
+
+      <footer class="win-status">
+        <span>~/portfolio</span>
+        <span>mississauga, on</span>
+      </footer>
+
+    </section>
+  </main>
 
   <script src="Background.js"></script>
 </body>

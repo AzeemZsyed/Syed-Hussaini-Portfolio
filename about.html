@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About Syed Azeemuddin Hussaini — third-year Software Engineering student at the University of Guelph.">
+  <title>Az — About</title>
+  <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+
+  <!-- ── Nav ─────────────────────────────────────────────── -->
+  <nav class="MenuBar">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="About.html">About</a></li>
+      <li><a href="Projects.html">Projects</a></li>
+      <li><a href="Resume.html">Resume</a></li>
+    </ul>
+  </nav>
+
+  <main class="page-content">
+
+    <!-- ══ Window 1: about_me ═══════════════════════════════
+         Four panes: bio (full height, left), meters + now
+         (top middle), links (top right), gallery (bottom).  -->
+    <section class="win">
+
+      <header class="win-bar">
+        <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="win-title">az@guelph: ~/about_me</span>
+        <span class="win-clock" data-clock>--:--:--</span>
+      </header>
+
+      <div class="win-body">
+        <pre class="PageArt" role="img" aria-label="About">
+ █████╗ ██████╗  ██████╗ ██╗   ██╗████████╗
+██╔══██╗██╔══██╗██╔═══██╗██║   ██║╚══██╔══╝
+███████║██████╔╝██║   ██║██║   ██║   ██║   
+██╔══██║██╔══██╗██║   ██║██║   ██║   ██║   
+██║  ██║██████╔╝╚██████╔╝╚██████╔╝   ██║   
+╚═╝  ╚═╝╚═════╝  ╚═════╝  ╚═════╝    ╚═╝   </pre>
+
+        <div class="about-grid">
+
+          <!-- ── Pane: bio ──────────────────────────────── -->
+          <div class="pane pane--bio">
+            <p class="bio-head"># Azeem</p>
+            <p class="bio">
+              Hey — thanks for stopping by. I'm a third-year
+              <span class="hl-green">Software Engineering</span> student at the
+              <span class="hl-cyan">University of Guelph</span>.
+            </p>
+            <p class="bio">
+              I'm still fairly new to this. I started coding about
+              <span class="hl-orange">two years ago</span> and I've enjoyed pretty much every
+              part of it since. Most of what I build sits between the web and the backend,
+              and lately I've been spending my time in <span class="hl-green">C</span> —
+              search algorithms and things close to the metal.
+            </p>
+            <p class="bio">
+              This summer I shipped an <span class="hl-white">AI voice receptionist</span> that
+              takes real client calls end to end. I also teach kids to code, which is the
+              fastest way I know to find out whether I actually understand something.
+            </p>
+            <p class="bio">
+              Away from the keyboard I play <span class="hl-orange">table tennis</span> and I
+              take <span class="hl-orange">pictures</span> — a few of them are in the gallery
+              below, have a look.
+            </p>
+            <p class="bio">
+              I'm looking for a <span class="hl-white">Summer 2027 co-op</span>. My email is
+              further down the page.
+            </p>
+          </div>
+
+          <!-- ── Pane: meters + now ─────────────────────── -->
+          <div class="pane pane--stats">
+
+            <!-- The bars are calculated live in Background.js
+                 from today's date — nothing here is hardcoded. -->
+            <div class="meter" data-meter="year">
+              <span class="meter-key">yrProg</span>
+              <span class="meter-bar" aria-hidden="true"></span>
+              <span class="meter-val">--%</span>
+            </div>
+
+            <div class="meter" data-meter="degree">
+              <span class="meter-key">degree</span>
+              <span class="meter-bar" aria-hidden="true"></span>
+              <span class="meter-val">--%</span>
+            </div>
+
+            <div class="meter" data-meter="coop">
+              <span class="meter-key">to co-op</span>
+              <span class="meter-bar" aria-hidden="true"></span>
+              <span class="meter-val">--%</span>
+            </div>
+
+            <p class="meter-note">Guelph 2024 – 2029 &nbsp;·&nbsp; co-op target: May 2027</p>
+
+            <table class="now">
+              <thead>
+                <tr><th>WHAT</th><th>DETAIL</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>studying</td><td>3rd year software engineering</td></tr>
+                <tr><td>building</td><td>rubik's cube solver in C</td></tr>
+                <tr><td>reading</td><td>anything on algorithms</td></tr>
+                <tr><td>playing</td><td>table tennis</td></tr>
+                <tr><td>shooting</td><td>photos around guelph</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- ── Pane: links ────────────────────────────── -->
+          <div class="pane pane--links">
+            <p class="md-link">
+              <span class="md-key">[github]</span><a href="https://github.com/AzeemZsyed" target="_blank" rel="noopener">(github.com/AzeemZsyed)</a>
+            </p>
+            <p class="md-link">
+              <span class="md-key">[linkedin]</span><a href="https://linkedin.com/in/azh0" target="_blank" rel="noopener">(linkedin.com/in/azh0)</a>
+            </p>
+            <p class="md-link">
+              <span class="md-key">[email]</span><a href="mailto:shussa21@uoguelph.ca">(shussa21@uoguelph.ca)</a>
+            </p>
+            <p class="md-link">
+              <span class="md-key">[resume]</span><a href="Resume.html">(download the pdf)</a>
+            </p>
+          </div>
+
+          <!-- ── Pane: gallery ──────────────────────────── -->
+          <div class="pane pane--gallery">
+            <div class="gallery">
+
+              <!-- Click a filename to load it into the viewer.
+                   Put your photos in an img/ folder, then just
+                   change the file name, data-src and data-caption
+                   on each line below. Add or remove <li> freely. -->
+              <div class="gallery-files">
+                <p class="dir-label">gallery/</p>
+                <ul class="file-list">
+                  <li><button type="button" class="file is-active" data-src="img/photo-01.jpg" data-caption="Guelph">photo-01.jpg</button></li>
+                  <li><button type="button" class="file" data-src="img/photo-02.jpg" data-caption="Campus at night">photo-02.jpg</button></li>
+                  <li><button type="button" class="file" data-src="img/photo-03.jpg" data-caption="Downtown">photo-03.jpg</button></li>
+                  <li><button type="button" class="file" data-src="img/photo-04.jpg" data-caption="Table tennis">photo-04.jpg</button></li>
+                  <li><button type="button" class="file" data-src="img/photo-05.jpg" data-caption="Untitled">photo-05.jpg</button></li>
+                </ul>
+              </div>
+
+              <figure class="gallery-view">
+                <img class="gallery-img" data-gallery-img src="img/photo-01.jpg" alt="Photo taken by Az">
+                <p class="gallery-empty" data-gallery-empty hidden>no image at this path yet</p>
+                <figcaption class="gallery-caption" data-gallery-caption>Guelph</figcaption>
+              </figure>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <footer class="win-status">
+        <span>about_me.md</span>
+        <span>guelph, on</span>
+      </footer>
+    </section>
+
+    <!-- ══ Window 2: experience.log ═════════════════════════ -->
+    <section class="win">
+
+      <header class="win-bar win-bar--plain">
+        <span class="win-title">~/experience.log</span>
+        <span class="win-meta">2 entries</span>
+      </header>
+
+      <div class="win-body">
+        <pre class="PageArt" role="img" aria-label="Experience">
+███████╗██╗  ██╗██████╗ ███████╗██████╗ ██╗███████╗███╗   ██╗ ██████╗███████╗
+██╔════╝╚██╗██╔╝██╔══██╗██╔════╝██╔══██╗██║██╔════╝████╗  ██║██╔════╝██╔════╝
+█████╗   ╚███╔╝ ██████╔╝█████╗  ██████╔╝██║█████╗  ██╔██╗ ██║██║     █████╗  
+██╔══╝   ██╔██╗ ██╔═══╝ ██╔══╝  ██╔══██╗██║██╔══╝  ██║╚██╗██║██║     ██╔══╝  
+███████╗██╔╝ ██╗██║     ███████╗██║  ██║██║███████╗██║ ╚████║╚██████╗███████╗
+╚══════╝╚═╝  ╚═╝╚═╝     ╚══════╝╚═╝  ╚═╝╚═╝╚══════╝╚═╝  ╚═══╝ ╚═════╝╚══════╝</pre>
+
+        <div class="exp-list">
+
+          <article class="exp-item">
+            <div class="exp-meta">
+              <p class="exp-date">May 2026<br>Aug 2026</p>
+              <p class="exp-location">Brampton, ON</p>
+            </div>
+            <div class="exp-body">
+              <p class="exp-role">Web Developer Intern</p>
+              <h2 class="exp-company">Peace Services</h2>
+              <ul class="exp-bullets">
+                <li>Built and deployed a production AI voice receptionist using Python and the Claude API to handle real inbound client calls, appointment intake, and FAQs — eliminating the need for a human receptionist</li>
+                <li>Developed and maintained company websites using PHP, WordPress, and .NET, including SEO optimization to improve search visibility</li>
+                <li>Conducted 70+ test calls to validate AI call routing logic, response accuracy, and multi-scenario handling before live deployment</li>
+                <li>Configured automated outbound call notifications to clients using the BiziBizi AI platform when orders or products were ready for pickup</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="exp-item">
+            <div class="exp-meta">
+              <p class="exp-date">Oct 2025<br>May 2026</p>
+              <p class="exp-location">Mississauga, ON</p>
+            </div>
+            <div class="exp-body">
+              <p class="exp-role">Coding Instructor</p>
+              <h2 class="exp-company">Steamoji</h2>
+              <ul class="exp-bullets">
+                <li>Planned and delivered structured coding lessons to children, teaching core programming concepts through hands-on projects involving coding, logic, and 3D printing</li>
+                <li>Adapted technical explanations to different skill levels; provided laptop troubleshooting and technical support</li>
+                <li>Documented student progress, learning outcomes, and project completion for internal tracking</li>
+              </ul>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <footer class="win-status">
+        <span>experience.log</span>
+        <span>most recent first</span>
+      </footer>
+    </section>
+
+    <!-- ══ Window 3: contact.cfg ════════════════════════════ -->

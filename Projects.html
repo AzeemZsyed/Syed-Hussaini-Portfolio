@@ -1,25 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Az — Projects</title>
-    <link rel="stylesheet" href="Style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Projects by Syed Azeemuddin Hussaini — AI receptionist, Rubik's Cube solver, and more.">
+  <title>Az — Projects</title>
+  <link rel="stylesheet" href="Style.css">
 </head>
 <body>
 
+  <!-- ── Nav ─────────────────────────────────────────────── -->
   <nav class="MenuBar">
     <ul>
       <li><a href="index.html">Home</a></li>
-      <li><a href="Experience.html">Experience</a></li>
-      <li><a href="Contact.html">Contact</a></li>
+      <li><a href="About.html">About</a></li>
       <li><a href="Projects.html">Projects</a></li>
       <li><a href="Resume.html">Resume</a></li>
     </ul>
   </nav>
 
-  <div class="page-content">
-    <pre class="PageArt">
+  <main class="page-content">
+    <section class="win">
+
+      <header class="win-bar">
+        <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="win-title">az@guelph: ~/projects</span>
+        <span class="win-clock" data-clock>--:--:--</span>
+      </header>
+
+      <div class="win-body">
+        <pre class="PageArt" role="img" aria-label="Projects">
 ██████╗ ██████╗  ██████╗      ██╗███████╗ ██████╗████████╗███████╗
 ██╔══██╗██╔══██╗██╔═══██╗     ██║██╔════╝██╔════╝╚══██╔══╝██╔════╝
 ██████╔╝██████╔╝██║   ██║     ██║█████╗  ██║        ██║   ███████╗
@@ -27,11 +37,53 @@
 ██║     ██║  ██║╚██████╔╝╚█████╔╝███████╗╚██████╗   ██║   ███████║
 ╚═╝     ╚═╝  ╚═╝ ╚═════╝  ╚════╝ ╚══════╝ ╚═════╝   ╚═╝   ╚══════╝</pre>
 
-    <div class="coming-soon">
-      <p class="coming-soon-title">Coming Soon</p>
-      <p class="coming-soon-sub">Currently building &nbsp;·&nbsp; check back shortly</p>
-    </div>
-  </div>
+        <div class="proj-list">
+
+          <article class="proj">
+            <div class="proj-head">
+              <h2 class="proj-name">AI Receptionist</h2>
+              <span class="proj-client">Ortho Care Services</span>
+            </div>
+            <p class="proj-stack">Python · Claude API · BiziBizi</p>
+            <ul class="exp-bullets">
+              <li>Voice receptionist that takes real patient calls end to end — appointment booking, service inquiries, clinic hours, and FAQs — with no human staff on the line</li>
+              <li>Python backend handles the business logic, pulls clinic data, and talks to the Claude API so answers stay accurate and consistent between calls</li>
+              <li>Validated against 70+ scripted test calls covering routing, edge cases, and multi-turn scenarios before going live</li>
+            </ul>
+          </article>
+
+          <article class="proj">
+            <div class="proj-head">
+              <h2 class="proj-name">Rubik's Cube Solver</h2>
+              <span class="proj-client">Personal</span>
+            </div>
+            <p class="proj-stack">C · JavaScript</p>
+            <ul class="exp-bullets">
+              <li>Solver written in C using BFS and IDA* search to find optimal move sequences, modelling the full cube state in memory and implementing all 18 legal moves</li>
+              <li>JavaScript frontend wired to the C backend — feed it any scrambled state and it animates the solution step by step</li>
+            </ul>
+          </article>
+
+          <article class="proj proj--soon">
+            <div class="proj-head">
+              <h2 class="proj-name">Next build</h2>
+              <span class="proj-client">In progress</span>
+            </div>
+            <p class="proj-stack">Something in C, probably</p>
+            <p class="proj-soon-note">Still compiling. Check back shortly, or watch
+              <a href="https://github.com/AzeemZsyed" target="_blank" rel="noopener">github.com/AzeemZsyed</a>.</p>
+          </article>
+
+        </div>
+      </div>
+
+      <footer class="win-status">
+        <span>3 items</span>
+        <span>1 in progress</span>
+      </footer>
+
+    </section>
+  </main>
 
   <script src="Background.js"></script>
 </body>
