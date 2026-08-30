@@ -11,7 +11,7 @@ function createStars(count, size, duration) {
         pointer-events: none;
         z-index: 0;
     `;
-    let shadows = [];
+    const shadows = [];
     for (let i = 0; i < count; i++) {
         const x = Math.floor(Math.random() * 2000);
         const y = Math.floor(Math.random() * 2000);
@@ -27,6 +27,9 @@ starStyle.textContent = `
         from { transform: translateY(0px); }
         to   { transform: translateY(-2000px); }
     }
+    @media (prefers-reduced-motion: reduce) {
+        [style*="animStar"] { animation: none !important; }
+    }
 `;
 document.head.appendChild(starStyle);
 
@@ -36,9 +39,9 @@ createStars(100, 3, 150);
 
 // ── Active nav link highlight ───────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-    const page = location.pathname.split('/').pop() || 'Home.html';
+    const page = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
     document.querySelectorAll('.MenuBar ul li a').forEach(a => {
-        if (a.getAttribute('href') === page) {
+        if (a.getAttribute('href').toLowerCase() === page) {
             a.style.color = '#fff';
         }
     });

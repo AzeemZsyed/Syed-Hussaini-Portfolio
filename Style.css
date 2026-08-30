@@ -1,23 +1,36 @@
 /* ── Base ──────────────────────────────────────────────── */
+:root {
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, "Courier New", monospace;
+
+    --red:    rgb(214, 30, 60);
+    --green:  #16a92a;
+    --blue:   rgb(39, 11, 123);
+    --orange: rgb(236, 94, 36);
+    --cyan:   rgb(4, 93, 128);
+
+    --line:   #fcf9f9;
+    --dim:    #5a5a5a;
+    --dimmer: #3a3a3a;
+}
+
 body {
     background-color: #000;
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: var(--mono);
     font-size: medium;
     margin: 0;
     padding: 0;
 }
 
-
-/* ── Bottom Nav ────────────────────────────────────────── */
+/* ── Top Nav ───────────────────────────────────────────── */
 .MenuBar {
     background-color: #000;
     position: fixed;
-    bottom: 0;
+    top: 0;
     left: 0;
     width: 100%;
     z-index: 100;
-    border-top: 0.5px solid #1a1a1a;
-    padding: 6px 0 8px;
+    border-bottom: 3px dashed var(--line);
+    padding: 8px 0 6px;
 }
 
 .MenuBar ul {
@@ -31,19 +44,20 @@ body {
 
 .MenuBar ul li a {
     display: block;
+    font-family: var(--mono);
     color: darkgrey;
-    font-size: 22px;
+    font-size: 17px;
     text-transform: uppercase;
     text-decoration: none;
     padding: 4px 10px;
     transition: color 0.2s;
 }
 
-.MenuBar ul li:nth-child(1) a:hover { color: rgb(214, 30, 60); }
-.MenuBar ul li:nth-child(2) a:hover { color: #047e12; }
-.MenuBar ul li:nth-child(3) a:hover { color: rgb(13, 67, 214); }
-.MenuBar ul li:nth-child(4) a:hover { color: rgb(236, 94, 36); }
-.MenuBar ul li:nth-child(5) a:hover { color: rgb(62, 170, 212); }
+.MenuBar ul li:nth-child(1) a:hover { color: var(--red); }
+.MenuBar ul li:nth-child(2) a:hover { color: var(--green); }
+.MenuBar ul li:nth-child(3) a:hover { color: var(--blue); }
+.MenuBar ul li:nth-child(4) a:hover { color: var(--orange); }
+.MenuBar ul li:nth-child(5) a:hover { color: var(--cyan); }
 
 /* Resume button */
 .MenuBar ul li:last-child a {
@@ -58,9 +72,25 @@ body {
     color: #000;
 }
 
+/* ── Brand (home, top left) ────────────────────────────── */
+.brand {
+    position: fixed;
+    top: 0;
+    left: 28px;
+    z-index: 101;
+    margin: 0;
+    padding: 12px 0;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
 /* ── Home Hero ─────────────────────────────────────────── */
 .head {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -68,34 +98,55 @@ body {
     text-align: center;
     position: relative;
     z-index: 1;
+    padding: 64px 16px 0;
+    box-sizing: border-box;
 }
 
+.Name {
+    font-size: 18px;
+    line-height: 1.05;
+    letter-spacing: 0;
+    font-weight: 400;
+    color: #fff;
+    -webkit-text-stroke: 0;
+    margin: 0 auto;
+    white-space: pre;
+    display: inline-block;
+    text-align: left;
+    transform: skewX(-10deg);
+}
 
 .SubTitle {
     font-size: 12px;
-    font-weight: 800;
-    color: #555;
-    letter-spacing: 6px;
+    font-weight: 700;
+    color: var(--cyan);
+    letter-spacing: 5px;
     text-transform: uppercase;
-    margin-top: 12px;
+    margin-top: 24px;
+}
+
+/* ── Page Banner Art ───────────────────────────────────── */
+.PageArt {
+    font-size: 8px;
+    line-height: 1.05;
+    letter-spacing: 0;
+    font-weight: 400;
+    color: #fff;
+    -webkit-text-stroke: 0;
+    margin: 0;
+    white-space: pre;
+    display: block;
+    transform: skewX(-10deg);
+    transform-origin: left bottom;
 }
 
 /* ── Shared Page Layout ────────────────────────────────── */
 .page-content {
     position: relative;
     z-index: 1;
-    padding: 80px 60px 100px;
+    padding: 70px 60px 80px;
     max-width: 1000px;
     margin: 0 auto;
-}
-
-.page-title {
-    font-size: 11px;
-    letter-spacing: 6px;
-    text-transform: uppercase;
-    color: #555;
-    margin-bottom: 60px;
-    font-weight: 800;
 }
 
 /* ── Experience Page ───────────────────────────────────── */
@@ -103,13 +154,14 @@ body {
     display: flex;
     flex-direction: column;
     gap: 48px;
+    margin-top: 36px;
 }
 
 .exp-item {
     display: grid;
     grid-template-columns: 160px 1fr;
     gap: 0 40px;
-    border-top: 0.5px solid #1a1a1a;
+    border-top: 3px dashed var(--line);
     padding-top: 28px;
 }
 
@@ -119,28 +171,26 @@ body {
 
 .exp-date {
     font-size: 11px;
-    letter-spacing: 3px;
-    color: #333;
+    letter-spacing: 2px;
+    color: var(--orange);
     text-transform: uppercase;
     line-height: 1.6;
 }
 
 .exp-location {
     font-size: 11px;
-    color: #2a2a2a;
+    color: var(--dimmer);
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     margin-top: 4px;
 }
 
-.exp-body {}
-
 .exp-role {
     font-size: 13px;
-    font-weight: 800;
-    color: #047e12;
+    font-weight: 700;
+    color: var(--green);
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     margin: 0 0 2px;
 }
 
@@ -149,7 +199,7 @@ body {
     font-weight: 700;
     color: #fff;
     text-transform: uppercase;
-    letter-spacing: 4px;
+    letter-spacing: 3px;
     margin: 0 0 14px;
 }
 
@@ -160,130 +210,157 @@ body {
 }
 
 .exp-bullets li {
-    font-size: 13px;
-    color: #555;
-    line-height: 1.7;
+    font-size: 12.5px;
+    color: var(--dim);
+    line-height: 1.75;
     padding-left: 16px;
     position: relative;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
 }
 
 .exp-bullets li::before {
     content: '—';
     position: absolute;
     left: 0;
-    color: #222;
+    color: var(--cyan);
 }
 
-/* ── Projects Page ─────────────────────────────────────── */
-.projects-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
+/* ── Coming Soon ───────────────────────────────────────── */
+.coming-soon {
+    border-top: 3px dashed var(--line);
+    margin-top: 36px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    text-align: center;
 }
 
-.project-card {
-    border: 0.5px solid #1a1a1a;
-    padding: 32px 28px;
-    transition: border-color 0.2s;
-}
-
-.project-card:hover {
-    border-color: #333;
-}
-
-.project-tag {
-    font-size: 10px;
-    letter-spacing: 3px;
+.coming-soon-title {
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--orange);
     text-transform: uppercase;
-    color: #333;
-    margin-bottom: 10px;
+    letter-spacing: 6px;
+    margin: 0 0 14px;
 }
 
-.project-name {
-    font-size: 18px;
-    font-weight: 800;
-    color: #fff;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    margin: 0 0 12px;
-    transition: color 0.2s;
-}
-
-.project-desc {
+.coming-soon-sub {
     font-size: 12px;
-    color: #444;
-    line-height: 1.7;
-    margin: 0 0 20px;
-}
-
-.project-stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-}
-
-.stack-tag {
-    font-size: 10px;
-    border: 0.5px solid #222;
-    color: #333;
-    padding: 3px 8px;
+    color: var(--dim);
+    letter-spacing: 2px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    margin: 0;
 }
 
-.project-card:hover .project-name {
-    color: rgb(236, 94, 36);
-}
-
-/* ── Contact / LinkedIn Page ───────────────────────────── */
+/* ── Contact Page ──────────────────────────────────────── */
 .contact-block {
     display: flex;
     flex-direction: column;
     gap: 32px;
-    margin-top: 20px;
+    margin-top: 36px;
 }
 
 .contact-row {
     display: flex;
     align-items: baseline;
     gap: 24px;
-    border-top: 0.5px solid #1a1a1a;
+    border-top: 3px dashed var(--line);
     padding-top: 24px;
 }
 
 .contact-label {
     font-size: 10px;
-    letter-spacing: 4px;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    color: #333;
+    color: var(--dim);
     width: 100px;
     flex-shrink: 0;
 }
 
 .contact-value a,
 .contact-value {
-    font-size: 20px;
+    font-family: var(--mono);
+    font-size: 19px;
     color: #fff;
     text-decoration: none;
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     font-weight: 700;
     transition: color 0.2s;
 }
 
-.contact-value a:hover { color: rgb(13, 67, 214); }
+.contact-row:nth-child(1) .contact-label { color: var(--blue); }
+.contact-row:nth-child(2) .contact-label { color: var(--green); }
+.contact-row:nth-child(3) .contact-label { color: var(--orange); }
+.contact-row:nth-child(4) .contact-label { color: var(--cyan); }
+.contact-row:nth-child(5) .contact-label { color: var(--red); }
+
+.contact-row:nth-child(1) .contact-value a:hover { color: var(--blue); }
+.contact-row:nth-child(2) .contact-value a:hover { color: var(--green); }
+.contact-row:nth-child(3) .contact-value a:hover { color: var(--orange); }
+.contact-row:nth-child(4) .contact-value a:hover { color: var(--cyan); }
+
+/* ── Resume Page ───────────────────────────────────────── */
+.resume-cta {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    gap: 32px;
+    padding: 64px 16px 0;
+    box-sizing: border-box;
+}
+
+.resume-label {
+    font-size: 11px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin: 0;
+}
+
+.resume-download {
+    font-family: var(--mono);
+    font-size: 48px;
+    font-weight: 700;
+    color: transparent;
+    -webkit-text-stroke: 1.5px #fff;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.resume-download:hover {
+    color: var(--green);
+    -webkit-text-stroke: 0px;
+}
+
+.resume-sub {
+    font-size: 11px;
+    color: var(--dimmer);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0;
+}
 
 @media screen and (max-width: 768px) {
 
+  .brand {
+    display: none;
+  }
+
   .page-content {
-    padding: 50px 20px 110px;
+    padding: 60px 20px 60px;
     max-width: 100%;
     overflow-x: hidden;
   }
 
-  .projects-grid {
-    grid-template-columns: 1fr;
+  .PageArt {
+    font-size: clamp(2px, 1vw, 5px);
   }
 
   .exp-item {
@@ -300,6 +377,16 @@ body {
     gap: 8px;
   }
 
+  .coming-soon-title {
+    font-size: 20px;
+    letter-spacing: 4px;
+  }
+
+  .resume-download {
+    font-size: 30px;
+    letter-spacing: 4px;
+  }
+
   .MenuBar ul {
     justify-content: flex-start;
     overflow-x: auto;
@@ -307,7 +394,7 @@ body {
   }
 
   .MenuBar ul li a {
-    font-size: 18px;
+    font-size: 17px;
     white-space: nowrap;
   }
 
